@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Styledsvg = styled.svg<{ hidden: string }>`
   width: 2rem;
   stroke: #13b113;
-  visibility: ${({ hidden }) => (hidden === "hid" ? "visible" : "hidden")};
+  visibility: ${({ hidden }) => (hidden === "visible" ? "visible" : "hidden")};
 `;
 
 const TickCaret = ({ ...props }) => {

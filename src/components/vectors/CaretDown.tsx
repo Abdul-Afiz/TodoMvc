@@ -9,18 +9,19 @@ const StyledCaret = styled.svg<{ visible: String }>`
   visibility: ${({ visible }) => (visible ? null : "hidden")};
 `;
 
-type svgProp = {
-  props?: SVGProps<SVGSVGElement>;
-  visible: String;
-};
+// type svgProp = {
+//   props?: SVGProps<SVGSVGElement>;
+//   visible: String;
+// };
 
-const CaretDown = ({ ...props }: svgProp) => {
+const CaretDown = ({ ...props }) => {
   return (
     <StyledCaret
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
+      {...props}
       visible={props.visible}
     >
       <path

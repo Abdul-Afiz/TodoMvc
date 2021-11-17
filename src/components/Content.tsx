@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { todoEntity } from "../store/todos.entity";
+import { todoEntity, toggleTodo } from "../store/todos.entity";
 import RemoveCaret from "./vectors/RemoveCaret";
 import TickCaret from "./vectors/TickCaret";
 import { removeTodo } from "../store/todos.entity";
@@ -21,24 +21,27 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const TodoText = styled.p`
+const TodoText = styled.p<{ comp: string }>`
   font-size: ${(props) => Apptheme.styles["fontsize-1"]};
   color: ${(props) => Apptheme.colors.color1};
+  text-decoration: ${({ comp }) =>
+    comp === "completed" ? "line-through" : null};
 `;
 
 const Content = () => {
   const todos = todoEntity.use();
-  console.log(todos);
 
   return (
     <div>
       {todos.map((todo) => {
         return (
           <ContentWrapper key={todo.id}>
-            <span>
-              <TickCaret view="null" />
+            <span onClick={() => toggleTodo(todo.id)}>
+              <TickCaret view={todo.completed ? "visible" : ""} />
             </span>
-            <TodoText>{todo.todo}</TodoText>
+            <TodoText comp={todo.completed ? "completed" : ""}>
+              {todo.todo}
+            </TodoText>
             <RemoveCaret onClick={() => removeTodo(todo.id)} />
           </ContentWrapper>
         );
